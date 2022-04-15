@@ -1,0 +1,20 @@
+true
+true
+true
+true
+98 67 55 45
+false
+true
+false
+55
+98
+98 67 55 *45
+3
+4
+true
+true
+Error in insert: IllegalArgumentException raised
+98 67 55 *45 32 84
+Error in insert: IllegalArgumentException raised
+Error in Line: Insert
+Error in Line: hih
