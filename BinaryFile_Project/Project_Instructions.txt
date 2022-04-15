@@ -1,0 +1,50 @@
+The File
+The file you are to read, modify, and save is a binary file that contains a sales list. A binary file is
+a non-text file, meaning some things (like numbers) aren’t stored as digits but as the ints/floats
+you use as variables. The name of the files to read and write will be in Util.h.
+
+The file will be structured like this:
+Field		Size		Type		Purpose
+HEADER
+
+NumEntries	4 btyes		Integer		Tells you how many
+						entries you need to
+						read.
+
+ENTRY(repeated
+NumEntries
+times)	
+
+Date/Time	sizeof(time_t)	Time		Timestamp (#
+						seconds since
+						1/1/1970)	
+
+Item ID		sizeof(int)	Integer 	Item's code
+
+Item Price 	sizeof(float)	Float		Price of the product
+
+Item Name	50 bytes	char*		Name of the item sold
+
+The goal is to copy the file. While making the copy, you will change two items:
+
+1. Modify the last existing entry, making these changes:
+	a. Price: 1,000,000
+	b. Name: “CS 3377”
+
+2. Add this info:
+	a. Time 1613412000 (2/15/2020 6 PM GMT)
+	b. ID 6530927
+	c. Price: 89.99
+	d. Name “Advanced Programming in the UNIX Environment by Stevens and Rago”
+	[warning: this is more than 49 characters!]
+
+Be sure to update the total number of entries to account for these new ones.
+Part 1 (Due 3/29)
+You will read in the file (Util::inputFileName), add/update the two entries, and save the file
+(Util::outputFileName) using open(), close(), read(), and write().
+
+You must use the low-level functions we will talk about in APUE chapter 3 (open, close, read,
+write). Failure to do so will result in 0 points for this part of the project.
+
+It is highly recommended that you do the file reading and writing in class(es) outside
+Part1SimpleFileModifier, as that code will be useful later.
