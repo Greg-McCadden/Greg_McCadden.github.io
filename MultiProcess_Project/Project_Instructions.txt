@@ -1,0 +1,16 @@
+In this case you will spawn a new process using fork() and exec(), and split the responsibilities like this:
+
+1. The original process will read the file (Argument=’R’ and then write the data over a pipe to the child process.
+
+2. The child process will read the file from the pipe (which will be set to standard input) and write the data to the output file.
+3. PipeMaker will take care of the pipe setup:
+	a. Create PipeMaker before the fork.
+	b. In the parent process, call setUpToWrite() to ready this process for writing. You’ll get back the file descriptor to write to. Write the file data to that file descriptor (hint: it’s just like writing to a file).
+	c. In the child process, before execing, call setUpToRead() to dup the pipe output to standard input. You can then exec the process (Part2_Template) with the write option (‘W’), read the data from standard input (just a file descriptor, remember!), and write to the output file.
+	d. Either the parent or the child process can do the update (but not both, obviously).
+	e. The parent process needs to wait on the child to finish (otherwise the checker might run prematurely.) Just use wait();
+	f. The child process should call exit() after writing the file…otherwise the checker will run twice and could give overlapping output.
+
+When calling exec, use the command Part2_Template W. This will trigger main to give you
+the proper setup for the child process. You will be responsible for spotting the
+Util::IOType of WRITE (3), and read from standard input rather than the input file.
